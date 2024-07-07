@@ -1,19 +1,14 @@
-# Etapa 1: Construcción de la aplicación Angular
 FROM node:20.14.0 AS build
-
-# Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
 # Copiar los archivos package.json y package-lock.json al contenedor
 COPY package*.json ./
 
-# Instalar las dependencias
-RUN npm install
+# Instalar las dependencias y eliminar archivos temporales
+RUN npm install && npm cache clean --force
 
-# Copiar el resto de los archivos y carpetas al contenedor
+# Copiar el resto de los archivos y carpetas al contenedor y compilar
 COPY . .
-
-# Compilar la aplicación Angular
 RUN npm run build -- --configuration production --project=proyecto
 
 # Etapa 2: Configuración de Nginx para servir la aplicación
