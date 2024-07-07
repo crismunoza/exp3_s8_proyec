@@ -1,0 +1,83 @@
+<!-- Imagen sección -->
+<div class="image-container">
+  <img src="./assets/img/logo.jpg" alt="Hero Image" class="hero-image">
+</div>
+<!-- Products Section -->
+<div class="container my-4 content">
+  <!-- Alertas -->
+  <div id="alertContainer" *ngIf="alertMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ alertMessage }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <h2 class="text-center text-custom">Productos</h2>
+  <div class="row">
+    <div class="col-md-3">
+      <h5>Precio</h5>
+      <ul class="list-unstyled">
+        <li><input type="checkbox" (change)="updateFilters('price', '$0 - $9.990', $event)"> $0 - $9.990</li>
+        <li><input type="checkbox" (change)="updateFilters('price', '$10.000 - $19.990', $event)"> $10.000 - $19.990</li>
+        <li><input type="checkbox" (change)="updateFilters('price', '$50.000 - $99.990', $event)"> $50.000 - $99.990</li>
+        <li><input type="checkbox" (change)="updateFilters('price', 'Sobre $100.000', $event)"> Sobre $100.000</li>
+      </ul>
+
+      <h5>Marcas</h5>
+      <ul class="list-unstyled">
+        <li><input type="checkbox" (change)="updateFilters('brand', 'Bandai', $event)"> Bandai</li>
+        <li><input type="checkbox" (change)="updateFilters('brand', 'Bandai Hobby', $event)"> Bandai Hobby</li>
+        <li><input type="checkbox" (change)="updateFilters('brand', 'Funko', $event)"> Funko</li>
+        <li><input type="checkbox" (change)="updateFilters('brand', 'Good Smile Company', $event)"> Good Smile Company</li>
+        <li><input type="checkbox" (change)="updateFilters('brand', 'Hasbro', $event)"> Hasbro</li>
+        <li><input type="checkbox" (change)="updateFilters('brand', 'MAFEX', $event)"> MAFEX</li>
+      </ul>
+
+      <h5>Tipo</h5>
+      <ul class="list-unstyled">
+        <li><input type="checkbox" (change)="updateFilters('type', 'Figuras Articuladas', $event)"> Figuras Articuladas</li>
+        <li><input type="checkbox" (change)="updateFilters('type', 'Figuras Estática', $event)"> Figuras Estática</li>
+        <li><input type="checkbox" (change)="updateFilters('type', 'Maqueta Armable', $event)"> Maqueta Armable</li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <div class="row">
+        <!-- Aquí puedes iterar tus productos y renderizarlos -->
+        <div class="col-md-4 mb-4" *ngFor="let product of products" [attr.data-brand]="product.brand" [attr.data-type]="product.type" [attr.data-price]="product.price" [ngClass]="{'hidden': product.hidden}">
+          <div class="card product-card">
+            <img [src]="product.imageUrl" class="card-img-top product-img" alt="Product Image">
+            <div class="card-body">
+              <h5 class="card-title product-name">{{product.name}}</h5>
+              <p class="card-text">
+                <span class="text-danger product-price">de ${{product.price | number:'1.0-0'}}</span>
+              </p>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" (click)="addToCart(product)">Agregar al Carrito</button>
+                <button (click)="toggleMoreInfo(product)" class="btn btn-secondary">Más Información</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" tabindex="-1" [class.show]="selectedProduct" [style.display]="selectedProduct ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{selectedProduct?.name}}</h5>
+        <button type="button" class="btn-close" (click)="closeMoreInfo()"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="selectedProduct?.imageUrl" class="img-fluid mb-3" alt="Product Image">
+        <p>{{selectedProduct?.moreInfo}}</p>
+        <p><strong>Precio: ${{selectedProduct?.price | number:'1.0-0'}}</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="selectedProduct ? addToCart(selectedProduct) : null">Agregar al Carrito</button>
+        <button type="button" class="btn btn-secondary" (click)="closeMoreInfo()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

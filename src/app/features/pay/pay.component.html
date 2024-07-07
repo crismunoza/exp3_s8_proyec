@@ -1,0 +1,38 @@
+<div class="container py-5">
+  <h2 class="text-center text-custom mb-4">Realizar Pago</h2>
+  <form #paymentForm="ngForm" (ngSubmit)="onSubmit(paymentForm)">
+    <!-- Mensaje de alerta -->
+    <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+      {{ alertMessage }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <!-- Número de tarjeta -->
+    <div class="mb-3">
+      <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+      <input type="text" class="form-control" id="cardNumber" name="cardNumber" ngModel required #cardNumber="ngModel">
+      <div *ngIf="paymentForm.submitted && !cardNumber.valid" class="invalid-feedback">
+        Por favor, ingresa un número de tarjeta válido.
+      </div>
+    </div>
+    <!-- Fecha de expiración -->
+    <div class="mb-3">
+      <label for="expiryDate" class="form-label">Fecha de Expiración</label>
+      <input type="text" class="form-control" id="expiryDate" name="expiryDate" ngModel required #expiryDate="ngModel">
+      <div *ngIf="paymentForm.submitted && !expiryDate.valid" class="invalid-feedback">
+        Por favor, ingresa una fecha de expiración válida.
+      </div>
+    </div>
+    <!-- CVV -->
+    <div class="mb-3">
+      <label for="cvv" class="form-label">CVV</label>
+      <input type="text" class="form-control" id="cvv" name="cvv" ngModel required #cvv="ngModel">
+      <div *ngIf="paymentForm.submitted && !cvv.valid" class="invalid-feedback">
+        Por favor, ingresa un CVV válido.
+      </div>
+    </div>
+    <!-- Botón de envío -->
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">Pagar</button>
+    </div>
+  </form>
+</div>

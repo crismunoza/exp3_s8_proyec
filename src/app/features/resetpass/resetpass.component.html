@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Resetear Contraseña</h2>
+          <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+            {{alertMessage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <form [formGroup]="resetForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+            <!-- Email -->
+            <div id="email-section" class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': f['email'].invalid && (f['email'].touched || f['email'].dirty) }">
+              <div *ngIf="f['email'].invalid && (f['email'].touched || f['email'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['email'].errors?.['required']">Por favor, ingrese un correo electrónico válido.</span>
+                <span *ngIf="f['email'].errors?.['email']">El correo electrónico debe ser válido.</span>
+              </div>
+            </div>
+            <!-- Botón -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" id="submit-button" class="btn btn-primary">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

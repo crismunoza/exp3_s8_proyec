@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Regístrate</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+            <!-- Alertas -->
+            <div id="alertContainer" *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+              {{alertMessage}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!-- Nombre Completo -->
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Nombre Completo</label>
+              <input type="text" class="form-control" id="fullName" formControlName="fullName" [ngClass]="{ 'is-invalid': f['fullName'].invalid && (f['fullName'].touched || f['fullName'].dirty) }">
+              <div *ngIf="f['fullName'].invalid && (f['fullName'].touched || f['fullName'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['fullName'].errors?.['required']">Por favor, ingrese su nombre completo.</span>
+              </div>
+            </div>
+            <!-- Nombre de Usuario -->
+            <div class="mb-3">
+              <label for="username" class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="username" formControlName="username" [ngClass]="{ 'is-invalid': f['username'].invalid && (f['username'].touched || f['username'].dirty) }">
+              <div *ngIf="f['username'].invalid && (f['username'].touched || f['username'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['username'].errors?.['required']">Por favor, ingrese un nombre de usuario.</span>
+              </div>
+            </div>
+            <!-- Correo Electrónico -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{ 'is-invalid': f['email'].invalid && (f['email'].touched || f['email'].dirty) }">
+              <div *ngIf="f['email'].invalid && (f['email'].touched || f['email'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['email'].errors?.['required']">Por favor, ingrese un correo electrónico válido.</span>
+                <span *ngIf="f['email'].errors?.['email']">El correo electrónico debe ser válido.</span>
+              </div>
+            </div>
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': f['password'].invalid && (f['password'].touched || f['password'].dirty) }">
+              <div *ngIf="f['password'].invalid && (f['password'].touched || f['password'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['password'].errors?.['required']">La contraseña es requerida.</span>
+                <span *ngIf="f['password'].errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</span>
+                <span *ngIf="f['password'].errors?.['maxlength']">La contraseña no puede tener más de 18 caracteres.</span>
+                <span *ngIf="f['password'].errors?.['pattern']">La contraseña debe incluir al menos una letra mayúscula, un número y un carácter especial.</span>
+              </div>
+            </div>
+            <!-- Repetir Contraseña -->
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Repetir Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': f['confirmPassword'].invalid && (f['confirmPassword'].touched || f['confirmPassword'].dirty) }">
+              <div *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].touched || f['confirmPassword'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['confirmPassword'].errors?.['required']">Este campo es requerido.</span>
+                <span *ngIf="f['confirmPassword'].errors?.['passwordMismatch']">Las contraseñas deben coincidir.</span>
+              </div>
+            </div>
+            <!-- Fecha de Nacimiento -->
+            <div class="mb-3">
+              <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+              <input type="date" class="form-control" id="birthdate" formControlName="birthdate" [ngClass]="{ 'is-invalid': f['birthdate'].invalid && (f['birthdate'].touched || f['birthdate'].dirty) }">
+              <div *ngIf="f['birthdate'].invalid && (f['birthdate'].touched || f['birthdate'].dirty)" class="invalid-feedback">
+                <span *ngIf="f['birthdate'].errors?.['required']">Por favor, ingrese su fecha de nacimiento.</span>
+              </div>
+            </div>
+            <!-- Dirección de Despacho -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Dirección de Despacho (Opcional)</label>
+              <input type="text" class="form-control" id="address" formControlName="address">
+            </div>
+            <!-- Botones -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

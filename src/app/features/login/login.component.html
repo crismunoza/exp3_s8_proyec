@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Iniciar Sesión</h2>
+          <p class="text-center">Ingresa tu correo electrónico para iniciar sesión</p>
+          <!-- Contenedor para alertas -->
+          <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+            {{alertMessage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+            <!-- Correo Electrónico -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" formControlName="email" required>
+              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
+            </div>
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" formControlName="password" required>
+              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="invalid-feedback">Por favor, ingrese su contraseña.</div>
+            </div>
+            <!-- Modo Administrador -->
+           <!--  <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="adminMode" formControlName="adminMode">
+              <label class="form-check-label" for="adminMode">Modo administrador</label>
+            </div>-->
+            <!-- Botones -->
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+              <a routerLink="/ResetPass" class="text-muted">¿Olvidaste tu contraseña?</a>
+            </div>
+            <!-- Registro -->
+            <div class="text-center mt-3">
+              <a routerLink="/Register">Registrarse</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.content {
+    flex: 1;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+    width: auto;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.product-card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+
+
+.navbar {
+    background-color: #001F39;
+}
+
+.navbar .navbar-custom {
+    color: #FFA726;
+}
+
+.navbar .navbar-custom:hover {
+    color: #FFE082;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><path stroke="rgba(255, 255, 255, 1)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+}
+
+.text-custom {
+    color: #FFA726;
+}
+
+/* Estilo base */
+.product-img {
+    width: 100%;
+    height: auto; /* Ajusta la altura automáticamente */
+    object-fit: contain; /* Ajusta la imagen para que quepa dentro del contenedor */
+}
+
+@media (max-width: 992px) {
+    .col-md-4 {
+        flex: 0 0 50%; /* Dos columnas en pantallas medianas */
+        max-width: 50%;
+    }
+
+    .product-img {
+        height: 200px; /* Ajusta la altura para pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .product-img {
+        height: 150px; /* Ajusta la altura para pantallas pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .product-img {
+        height: 150px; /* Ajusta la altura para pantallas muy pequeñas */
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-body .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+
+
+.hidden {
+    display: none !important;
+}
+
+#user-menu {
+    display: flex;
+    align-items: center;
+}
+
+#username-display {
+    margin-right: 10px;
+}
+
+.card-body .btn {
+    flex: 1;
+    margin: 5px;
+}
+
+.d-flex.justify-content-between {
+    margin-top: 10px;
+}

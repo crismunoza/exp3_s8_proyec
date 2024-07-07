@@ -1,0 +1,20 @@
+<div class="container py-5">
+  <h2 class="text-center text-custom mb-4">Mi Carrito</h2>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="list-group" id="cart-items">
+        <!-- Items del carrito se añadirán aquí dinámicamente -->
+      </div>
+    </div>
+    <div class="col-lg-4 py-5">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-custom">Resumen</h4>
+          <p class="card-text">Total: $<span id="cart-total">0</span></p>
+          <button class="btn btn-primary btn-block mb-2 me-2" (click)="onProceedPayment()">Proceder al Pago</button>
+          <button class="btn btn-success btn-block mb-2" (click)="onHistory()">Historial</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

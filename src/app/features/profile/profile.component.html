@@ -1,0 +1,67 @@
+  <!-- Perfil de Usuario -->
+  <div class="container">
+    <div class="row justify-content-center py-5">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="text-center mb-4" id="nick">Perfil de Usuario</h2>
+            <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+              {{alertMessage}}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+              <!-- Nombre Completo -->
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="fullName" formControlName="fullName" [ngClass]="{'is-invalid': f['fullName'].invalid && (f['fullName'].touched || f['fullName'].dirty)}" required>
+                <div *ngIf="f['fullName'].invalid && (f['fullName'].touched || f['fullName'].dirty)" class="invalid-feedback">Por favor, ingrese su nombre completo.</div>
+              </div>
+              <!-- Nombre de Usuario -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="username" formControlName="username" [ngClass]="{'is-invalid': f['username'].invalid && (f['username'].touched || f['username'].dirty)}" required>
+                <div *ngIf="f['username'].invalid && (f['username'].touched || f['username'].dirty)" class="invalid-feedback">Por favor, ingrese un nombre de usuario.</div>
+              </div>
+              <!-- Correo Electrónico -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="{'is-invalid': f['email'].invalid && (f['email'].touched || f['email'].dirty)}" required>
+                <div *ngIf="f['email'].invalid && (f['email'].touched || f['email'].dirty)" class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
+              </div>
+              <!-- Fecha de Nacimiento -->
+              <div class="mb-3">
+                <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="birthdate" formControlName="birthdate" [ngClass]="{'is-invalid': f['birthdate'].invalid && (f['birthdate'].touched || f['birthdate'].dirty)}" required>
+                <div *ngIf="f['birthdate'].invalid && (f['birthdate'].touched || f['birthdate'].dirty)" class="invalid-feedback">Por favor, ingrese su fecha de nacimiento.</div>
+              </div>
+              <!-- Contraseña Actual -->
+              <div class="mb-3">
+                <label for="currentPassword" class="form-label">Contraseña Actual</label>
+                <input type="password" class="form-control" id="currentPassword" formControlName="currentPassword" [ngClass]="{'is-invalid': f['currentPassword'].invalid && (f['currentPassword'].touched || f['currentPassword'].dirty)}" required>
+                <div *ngIf="f['currentPassword'].invalid && (f['currentPassword'].touched || f['currentPassword'].dirty)" class="invalid-feedback">Por favor, ingrese su contraseña actual.</div>
+              </div>
+              <!-- Nueva Contraseña -->
+              <div class="mb-3">
+                <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                <input type="password" class="form-control" id="newPassword" formControlName="newPassword" [ngClass]="{'is-invalid': f['newPassword'].invalid && (f['newPassword'].touched || f['newPassword'].dirty)}">
+                <div *ngIf="f['newPassword'].invalid && (f['newPassword'].touched || f['newPassword'].dirty)" class="invalid-feedback">
+                  La contraseña debe tener entre 6 y 18 caracteres, incluir al menos una letra mayúscula y un número.
+                </div>
+              </div>
+              <!-- Dirección -->
+              <div class="mb-3">
+                <label for="address" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+              </div>
+              <!-- Botones -->
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" id="adminButton" class="btn btn-danger d-none" (click)="navigateToAdmin()">Admin</button>
+              </div>
+            </form>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

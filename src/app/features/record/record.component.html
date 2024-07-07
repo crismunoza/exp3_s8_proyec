@@ -1,0 +1,13 @@
+<!-- Historial de Compras -->
+<div class="container py-5">
+    <h2 class="text-center text-custom mb-4">Historial de Compras</h2>
+    <div class="list-group" id="purchase-history">
+      <div *ngIf="purchaseHistory.length === 0" class="text-center">No hay historial de compras.</div>
+      <div *ngFor="let purchase of purchaseHistory" class="list-group-item">
+        <h5 class="mb-1">{{ purchase.name }}</h5>
+        <p class="mb-1">$ {{ purchase.price }}</p>
+        <small>Fecha: {{ purchase.date | date:'shortDate' }}</small>
+      </div>
+    </div>
+  </div>
+  

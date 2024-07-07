@@ -1,0 +1,76 @@
+<!-- Sección de gestión de usuarios -->
+<div class="container my-4">
+  <h2 class="text-center text-custom">Gestión de Usuarios</h2>
+  <div *ngIf="alertMessage" class="alert alert-{{alertType}} alert-dismissible fade show" role="alert">
+    {{alertMessage}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre Completo</th>
+        <th>Nombre de Usuario</th>
+        <th>Correo Electrónico</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.birthdate }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-1" (click)="editUser(i)" data-bs-toggle="modal" data-bs-target="#editUserModal">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteUser(i)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para editar usuario -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+          <!-- Campos del formulario de edición -->
+          <div class="mb-3">
+            <label for="editFullName" class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" id="editFullName" formControlName="fullName" required>
+            <div *ngIf="f['fullName'].invalid && (f['fullName'].touched || f['fullName'].dirty)" class="invalid-feedback">Por favor, ingrese su nombre completo.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editUsername" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" id="editUsername" formControlName="username" required>
+            <div *ngIf="f['username'].invalid && (f['username'].touched || f['username'].dirty)" class="invalid-feedback">Por favor, ingrese un nombre de usuario.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editEmail" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="editEmail" formControlName="email" >
+            <div *ngIf="f['email'].invalid && (f['email'].touched || f['email'].dirty)" class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editBirthdate" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="editBirthdate" formControlName="birthdate" required>
+            <div *ngIf="f['birthdate'].invalid && (f['birthdate'].touched || f['birthdate'].dirty)" class="invalid-feedback">Por favor, ingrese su fecha de nacimiento.</div>
+          </div>
+          <div class="mb-3">
+            <label for="editAddress" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="editAddress" formControlName="address">
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
